@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout}">
+
+<head>
+    <title>Categories</title>
+</head>
+
+<body>
+<div layout:fragment="content" class="container">
+
+    <h2>Category List</h2>
+
+    <a th:href="@{/categories/create}"
+       class="btn btn-primary mb-3">
+        Create Category
+    </a>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th width="150">Action</th>
+        </tr>
+
+        <tr th:each="c : ${categories}">
+            <td th:text="${c.id}"></td>
+            <td th:text="${c.name}"></td>
+
+            <td>
+                <a th:href="@{/categories/edit/{id}(id=${c.id})}"
+                   class="btn btn-warning btn-sm">
+                    Edit
+                </a>
+
+                <a th:href="@{/categories/delete/{id}(id=${c.id})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Delete category?')">
+                    Delete
+                </a>
+            </td>
+        </tr>
+
+    </table>
+
+</div>
+</body>
+</html>

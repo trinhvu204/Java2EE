@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout}">
+
+<body>
+<div layout:fragment="content" class="container">
+
+    <h2>Edit Category</h2>
+
+    <form th:action="@{/categories/edit}"
+          th:object="${category}"
+          method="post">
+
+        <input type="hidden"
+               th:field="*{id}">
+
+        <div class="mb-3">
+            <label>Name</label>
+            <input class="form-control"
+                   th:field="*{name}">
+        </div>
+
+        <button class="btn btn-success">
+            Update
+        </button>
+
+    </form>
+
+</div>
+</body>
+</html>
