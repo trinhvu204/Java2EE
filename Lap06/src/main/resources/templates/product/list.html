@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{_layout :: layout(~{::content})}">
+
+<div th:fragment="content">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white d-flex justify-content-between">
+            <h4>Danh sách sản phẩm</h4>
+
+            <a th:href="@{/products/add}" class="btn btn-light btn-sm">
+                Thêm sản phẩm
+            </a>
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-hover text-center align-middle">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên</th>
+                        <th>Giá</th>
+                        <th>Hình</th>
+                        <th>Danh mục</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr th:each="p : ${products}">
+
+                        <td th:text="${p.id}"></td>
+
+                        <td th:text="${p.name}"></td>
+
+                        <td class="text-success fw-bold" th:text="${p.price}"></td>
+
+                        <td>
+                            <img th:if="${p.image != null}" th:src="@{'/images/' + ${p.image}}" width="80"
+                                class="rounded shadow">
+                        </td>
+
+                        <td th:text="${p.category.name}"></td>
+
+                        <td>
+
+                            <a class="btn btn-warning btn-sm" th:href="@{/products/edit/{id}(id=${p.id})}">
+                                Edit
+                            </a>
+
+                            <a class="btn btn-danger btn-sm" th:href="@{/products/delete/{id}(id=${p.id})}"
+                                onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');">
+                                Delete
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</html>
